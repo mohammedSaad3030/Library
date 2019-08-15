@@ -94,3 +94,27 @@ void cntReachalbleCells(int r, int c)
     cntReachalbleCells(r-1, c);
     cntReachalbleCells(r+1, c);
 }
+
+/// to know the farthest node of a particular node, and the number of nodes in that path
+void dfs(int node, int d = 1)
+{
+    vis[node] = 1;
+    for(auto & v: adj[node])
+    {
+        if(!vis[v]) dfs(v, d+1);
+    }
+    if(d > mxd)
+    {
+        mxd = d;
+        mxnode = node;
+    }
+}
+
+void farthestNode(int node)
+{
+    memset(vis, 0, sizeof vis);
+    mxd = 0; mxnode = -1;
+    dfs(node);
+    cout << "From node : " << node << ", the farthest node you can reach is : " << mxnode
+    << ", and the number of nodes on that path is : " << mxd << "\n";
+}
