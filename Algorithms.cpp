@@ -118,3 +118,32 @@ void farthestNode(int node)
     cout << "From node : " << node << ", the farthest node you can reach is : " << mxnode
     << ", and the number of nodes on that path is : " << mxd << "\n";
 }
+
+
+/// farthest path in the tree as all
+void dfs(int node, int d = 1)
+{
+    vis[node] = 1;
+    for(auto & v : adj[node])
+    {
+        if(!vis[v])
+            dfs(v, d+1);
+    }
+    if(d  > mxd)
+    {
+        mxd = d;
+        mxnode = node;
+    }
+}
+int main () /// dfs on any node you want, this will bring an edged node (نود عالحافة), then dfs on that node.
+{
+ 	memset(vis, 0, sizeof vis);
+	msx = 0; mxnode = -1;
+	dfs(1);
+	memset(vis, 0, sizeof vis);
+	mxd= 0 ;
+	dfs(mxnode);
+	cout << mxd-1 << "\n;
+}
+
+
