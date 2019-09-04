@@ -1,4 +1,9 @@
 const double PI = 3.14159265358979323846;
+const double EPSILON = 0.001;
+const ll INF = 1e15;
+const int MOD = 1e9 + 7;
+const double EPS = 1e-9;
+const double PI = acos(-1.0);
 
 ///gcd
 int gcd(ll a, ll b) { return b == 0 ? a : gcd(b, a % b ); }
@@ -15,11 +20,25 @@ for(int i = 1 ; i <= g/i ; i++)
         }
     }
 
+///double comparison
+bool Equal(double a, double b)
+{
+    return fabs(a - b) < EPSILON;
+}
 
 ///Ceil division
 ll ceilDiv(ll a, ll b)
 {
     return (a + b - 1)/b;
+}
+
+void findPermutations(ll arr[], int n)
+{
+    sort(arr, arr + n);
+    do
+    {
+        ctr++;
+    } while (next_permutation(arr, arr + n));
 }
 
 
