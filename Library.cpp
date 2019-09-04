@@ -1,3 +1,11 @@
+/*
+Ctrl + Shift + L delete the line
+Ctrl + L        delete the line and keep it in your cilpboard
+Ctrl + D  repeat the line
+Ctrl + Shift + C on codeblocks  || Ctrl + Shift + / in clion    line comment
+Ctrl + Shift + X on codeblocks  || Ctrl + Shift + / in clion    line uncomment
+ */
+
 const double PI = 3.14159265358979323846;
 const double EPSILON = 0.001;
 const ll INF = 1e15;
