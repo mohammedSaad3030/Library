@@ -16,6 +16,9 @@ const double PI = acos(-1.0);
 ///gcd
 int gcd(ll a, ll b) { return b == 0 ? a : gcd(b, a % b ); }
 
+///convert string tolower or toupper letters
+transform(su.begin(), su.end(), su.begin(), ::toupper); 
+
 
 ///fining all dividors of a number g
 vector<int> dividors;
