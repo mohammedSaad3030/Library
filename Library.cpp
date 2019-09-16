@@ -16,6 +16,13 @@ const double PI = acos(-1.0);
 ///gcd
 int gcd(ll a, ll b) { return b == 0 ? a : gcd(b, a % b ); }
 
+///interval summation function
+int summ(int i, int n)
+{
+    if(i == 1) return(n* (n+1) / 2);
+    return (summ(1, n) - summ(1, i-1));
+}
+
 ///convert string tolower or toupper letters
 transform(su.begin(), su.end(), su.begin(), ::toupper); 
 
