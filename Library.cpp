@@ -5,7 +5,8 @@ Ctrl + D  repeat the line
 Ctrl + Shift + C on codeblocks  || Ctrl + Shift + / in clion    line comment
 Ctrl + Shift + X on codeblocks  || Ctrl + Shift + / in clion    line uncomment
  */
-
+///minimization : (st + ed) / 2;
+///maximization : (st + ed + 1)/ 2;
 const double PI = 3.14159265358979323846;
 const double EPSILON = 0.001;
 const ll INF = 1e15;
