@@ -1,16 +1,3 @@
-/*
-Ctrl + Shift + L delete the line
-Ctrl + L        delete the line and keep it in your cilpboard
-Ctrl + D  repeat the line
-Ctrl + Shift + C on codeblocks  || Ctrl + Shift + / in clion    line comment
-Ctrl + Shift + X on codeblocks  || Ctrl + Shift + / in clion    line uncomment
- */
-
-///minimization : (st + ed) / 2;
-///maximization : (st + ed + 1)/ 2;
-
-///a = 97  z = 122
-///A = 65  Z = 90
 
 #include <bits/stdtr1c++.h>
 
@@ -38,7 +25,15 @@ const double EPSILON = 1e-9;
 const ll INF = 1e15;
 const int MOD = 1e9 + 7;
 
+
+
+
+************************ (General tools) ***********************************************************************************
+
 ///memset(vis, 0, sizeof vis);
+
+///Size of an array
+int n = sizeof(arr)/sizeof(arr[0]); 
 
 ///double equality
 bool Equal(double a, double b)
@@ -62,8 +57,6 @@ ll ceilDiv(ll a, ll b)
     return (a + b - 1)/b;
 }
 
-///gcd
-int gcd(ll a, ll b) { return b == 0 ? a : gcd(b, a % b ); }
 
 ///interval summation function
 int summ(int i, int n)
@@ -72,21 +65,8 @@ int summ(int i, int n)
     return (summ(1, n) - summ(1, i-1));
 }
 
-///Size of an array
-int n = sizeof(arr)/sizeof(arr[0]); 
-
-///transform(Iterator inputBegin, Iterator inputEnd, Iterator OutputBegin, unary_operation);
-
-///Convert string tolower or toupper letters
-transform(su.begin(), su.end(), su.begin(), ::toupper); 
-
-///Increment all elements of an array
-transform(arr, arr+n, arr, increment);
-
-///Add two arrays and save the result in res array
-transform(arr1, arr1+n, arr2, res, plus<int>());
-
-
+///gcd
+int gcd(ll a, ll b) { return b == 0 ? a : gcd(b, a % b ); }
 
 ///fining all dividors of a number g
 vector<int> dividors;
@@ -101,7 +81,35 @@ for(int i = 1 ; i <= g/i ; i++)
 
 
 
-///Permutations 
+
+*********************** (Strings) ************************************************************************************
+
+///transform(Iterator inputBegin, Iterator inputEnd, Iterator OutputBegin, unary_operation);
+
+///Convert string tolower or toupper letters
+transform(su.begin(), su.end(), su.begin(), ::toupper); 
+
+///Increment all elements of an array
+transform(arr, arr+n, arr, increment);
+
+///Add two arrays and save the result in res array
+transform(arr1, arr1+n, arr2, res, plus<int>());
+
+///Return true if str is lexicographical less than str2 (case sensitivity), 'a' is lexicographical less than 'b', 'a' is lexicographical bigger than 'A' (ASCII based) 
+lexicographical_compare(str.begin(), str.end(), str2.begin(), str2.end()));
+
+// helper function to convert all into lower case to use in lexicographical_compare function: 
+bool comp (char s1, char s2) 
+{ 
+    return tolower(s1)<tolower(s2); 
+}
+lexicographical_compare(one, one+13, two, two+3, comp);
+
+
+
+
+******************** (Permutations) ***************************************************************************************
+
 https://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
 ///A string of length n has 00n! permutation.
 
@@ -154,7 +162,10 @@ void permute(string a, int l, int r)
 }
 
 
-///Fibonacci
+
+
+********************* (Fibonacci) **************************************************************************************
+
 ///The sequence Fn of Fibonacci numbers is defined by the recurrence relation (Fn = Fn-1 + Fn-2)
 ///with seed values (F0 = 0 and F1 = 1.)
 
@@ -193,34 +204,67 @@ void fibSeries(int n)
 }
 
 
-///Bits manipulation (Bitmasks)
-void printSet(int s)
-{
-  cout << "s = " << s << endl;
-  stack<int> st;
-  while (s)
-    st.push(s % 2), s /= 2;
-  while (!st.empty())                         // to reverse the print order
-    {cout << st.top(); st.pop();}
-  cout << endl;
+
+
+********************* (Bitset) **************************************************************************************
+
+bitset<M> bset(string("1100"));
+count function returns number of set bits in bitset 
+   int numberof1 = set8.count(); 
+// test function return 1 if bit is set else returns 0 
+    cout << "bool representation of " << set8 << " : "; 
+    for (int i = 0; i < set8.size(); i++) 
+        cout << set8.test(i) << " "; 
+bset.set() sets all bits
+bset.set(pos, b) makes bset[pos] = b;
+bset.set(pos) makes bset[pos] = 1;
+reset function makes all bits 0;
+flip function flips all bits;
+any function returns true, if at least 1 bit is set;
+if (!set8.any()) 
+        cout << "set8 has no bit set.\n";
+none function returns true, if none of the bit is set;
+if (!bset1.none()) 
+        cout << "bset1 has some bit set\n"; 
+
+
+
+
+********************* (Sieve) **************************************************************************************
+
+///Big primes:104729,1299709,15485863,179424673, 2147483647,32416190071,112272535095293,48112959837082048697
+
+ll _sieve_size;
+bitset<10000010> bs;   // 10^7 should be enough for most cases
+vi primes;   // compact list of primes in form of vector<int>
+
+void sieve(ll upperbound)
+{          /// create list of primes in [0..upperbound]
+    _sieve_size = upperbound + 1;                   /// add 1 to include upperbound
+    bs.set();                                                 /// set all bits to 1
+    bs[0] = bs[1] = 0;                                     /// except index 0 and 1
+    for (ll i = 2; i <= _sieve_size; i++) if (bs[i])
+    {
+        /// cross out multiples of i starting from i * i!
+        for (ll j = i * i; j <= _sieve_size; j += i) bs[j] = 0;
+        primes.push_back((int)i);  // also add this vector containing list of primes
+    }
+} 
+
+
+bool isPrime(ll N)
+{                 /// a good enough deterministic prime tester
+    if (N <= _sieve_size) return bs[N];                   /// O(1) for small primes
+    for (int i = 0; i < (int)primes.size(); i++)
+        if (N % primes[i] == 0) return false;
+    return true;                    /// it takes longer time if N is a large prime!
 }
-#define isOn(S, j) (S & (1 << j))
-#define setBit(S, j) (S |= (1 << j))
-#define clearBit(S, j) (S &= ~(1 << j))
-#define toggleBit(S, j) (S ^= (1 << j))
-#define lowBit(S) (S & (-S))
-#define setAll(S, n) (S = (1 << n) - 1)
-
-#define modulo(S, N) ((S) & (N - 1))   // returns S % N, where N is a power of 2
-#define isPowerOfTwo(S) (!(S & (S - 1)))
-#define nearestPowerOfTwo(S) ((int)pow(2.0, (int)((log((double)S) / log(2.0)) + 0.5)))
-#define turnOffLastBit(S) ((S) & (S - 1))
-#define turnOnLastZero(S) ((S) | (S + 1))
-#define turnOffLastConsecutiveBits(S) ((S) & (S + 1))
-#define turnOnLastConsecutiveZeroes(S) ((S) | (S - 1))
 
 
-///DFS
+
+
+****************** (DFS) *****************************************************************************************
+
 void dfs(int node)
 {
 	visited[node] = true;
@@ -251,6 +295,8 @@ bool isSingleComponent() {
     }
     return true;
 }
+
+
 
 void dfs_EdgeClassification(int node)
 {
@@ -331,6 +377,37 @@ void dfs(int node, int d = 1)
     }
 }
 
+
+
+
+******************** Bits manipulation (Bitmasks) ***************************************************************************************
+
+void printSet(int s)
+{
+  cout << "s = " << s << endl;
+  stack<int> st;
+  while (s)
+    st.push(s % 2), s /= 2;
+  while (!st.empty())                         // to reverse the print order
+    {cout << st.top(); st.pop();}
+  cout << endl;
+}
+#define isOn(S, j) (S & (1 << j))
+#define setBit(S, j) (S |= (1 << j))
+#define clearBit(S, j) (S &= ~(1 << j))
+#define toggleBit(S, j) (S ^= (1 << j))
+#define lowBit(S) (S & (-S))
+#define setAll(S, n) (S = (1 << n) - 1)
+
+#define modulo(S, N) ((S) & (N - 1))   // returns S % N, where N is a power of 2
+#define isPowerOfTwo(S) (!(S & (S - 1)))
+#define nearestPowerOfTwo(S) ((int)pow(2.0, (int)((log((double)S) / log(2.0)) + 0.5)))
+#define turnOffLastBit(S) ((S) & (S - 1))
+#define turnOnLastZero(S) ((S) | (S + 1))
+#define turnOffLastConsecutiveBits(S) ((S) & (S + 1))
+#define turnOnLastConsecutiveZeroes(S) ((S) | (S - 1))
+
+
 int main()
 {
 	ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);	
@@ -342,40 +419,64 @@ int main()
 	
 	///Bits manipulation 
 	int s = 34;
-	printSet(s);
-	cout << "2. Multiply s by 2, then divide S by 4 (2x2), then by 2\n";
-	s = 34; printSet(s);
-	s = s << 1; printSet(s);
-	s = s >> 2; printSet(s);
-	s = s >> 1; printSet(s);
-	cout << endl;
+    printSet(s);
+    cout << "2. Multiply s by 2, then divide S by 4 (2x2), then by 2\n";
+    s = 34; printSet(s);
+    s = s << 1; printSet(s);
+    s = s >> 2; printSet(s);
+    s = s >> 1; printSet(s);
+    cout << endl;
 
-	cout << "3. Set/turn on the 3-th item of the set\n";
-	s = 34; printSet(s);
-	setBit(s, 3); printSet(s);
-	cout << endl;
+    cout << "3. Set/turn on the 3-th item of the set\n";
+    s = 34; printSet(s);
+    setBit(s, 3); printSet(s);
+    cout << endl;
 
-	int T;
-	cout << "4. Check if the 3-th and then 2-nd item of the set is on?\n";
-	s = 42; printSet(s);
-	T = isOn(s, 3); if(T) cout << "ON\n"; else cout << "OFF\n";
-	T = isOn(s, 2); if(T) cout << "ON\n"; else cout << "OFF\n";
+    int T;
+    cout << "4. Check if the 3-th and then 2-nd item of the set is on?\n";
+    s = 42; printSet(s);
+    T = isOn(s, 3); if(T) cout << "ON\n"; else cout << "OFF\n";
+    T = isOn(s, 2); if(T) cout << "ON\n"; else cout << "OFF\n";
 
-	cout << "5. Clear/turn off the 1-st item of the set\n";
-	s = 42; printSet(s);
-	clearBit(s, 1); printSet(s);
-	cout << endl;
+    cout << "5. Clear/turn off the 1-st item of the set\n";
+    s = 42; printSet(s);
+    clearBit(s, 1); printSet(s);
+    cout << endl;
 
-	cout << "6. Toggle the 2-nd item and then 3-rd item of the set\n";
-	s = 40; printSet(s);
-	toggleBit(s, 2); printSet(s);
-	toggleBit(s, 3); printSet(s);
-	cout << endl;
+    cout << "6. Toggle the 2-nd item and then 3-rd item of the set\n";
+    s = 40; printSet(s);
+    toggleBit(s, 2); printSet(s);
+    toggleBit(s, 3); printSet(s);
+    cout << endl;
 
-	cout << "7. Check the first bit from right that is on\n";
-	s = 40; printSet(s);
-	T = lowBit(s); cout << "T = " << T << " (this is always a power of 2)\n";
-	s = 52; printSet(s);
-	T = lowBit(s); cout << "T = " << T << " (this is always a power of 2)\n";
-	cout << endl;
+    cout << "7. Check the first bit from right that is on\n";
+    s = 40; printSet(s);
+    T = lowBit(s); cout << "T = " << T << " (this is always a power of 2)\n";
+    s = 52; printSet(s);
+    T = lowBit(s); cout << "T = " << T << " (this is always a power of 2)\n";
+    cout << endl;
+}
 
+
+
+
+******************** (General hints) ***************************************************************************************
+
+///Competitive programming 3 book material
+https://sites.google.com/site/stevenhalim/home/material
+
+///minimization : (st + ed) / 2;
+///maximization : (st + ed + 1)/ 2;
+
+///a = 97  z = 122
+///A = 65  Z = 90
+
+///You need to do these operations if you use stringstream many times
+strem.str(string()); or strem.str("");
+strem.clear();
+
+you cannot do this 
+vector <std::string>  vec(6);
+vec[0][0] = 'h';
+instead do this :
+vec[0] += 'h';
