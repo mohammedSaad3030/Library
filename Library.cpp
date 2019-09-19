@@ -413,48 +413,67 @@ int main()
 	ios_base::sync_with_stdio(false); cin.tie(0); cout.tie(0);	
 	#ifndef ONLINE_JUDGE
 	freopen("input.txt", "r", stdin);
-    	freopen("output.txt", "w", stdout);
-    	#else
-    	#endif
-	
+	freopen("output.txt", "w", stdout);
+	#else
+	#endif
+
 	///Bits manipulation 
 	int s = 34;
-    printSet(s);
-    cout << "2. Multiply s by 2, then divide S by 4 (2x2), then by 2\n";
-    s = 34; printSet(s);
-    s = s << 1; printSet(s);
-    s = s >> 2; printSet(s);
-    s = s >> 1; printSet(s);
-    cout << endl;
+	printSet(s);
+	cout << "2. Multiply s by 2, then divide S by 4 (2x2), then by 2\n";
+	s = 34; printSet(s);
+	s = s << 1; printSet(s);
+	s = s >> 2; printSet(s);
+	s = s >> 1; printSet(s);
+	cout << endl;
 
-    cout << "3. Set/turn on the 3-th item of the set\n";
-    s = 34; printSet(s);
-    setBit(s, 3); printSet(s);
-    cout << endl;
+	cout << "3. Set/turn on the 3-th item of the set\n";
+	s = 34; printSet(s);
+	setBit(s, 3); printSet(s);
+	cout << endl;
 
-    int T;
-    cout << "4. Check if the 3-th and then 2-nd item of the set is on?\n";
-    s = 42; printSet(s);
-    T = isOn(s, 3); if(T) cout << "ON\n"; else cout << "OFF\n";
-    T = isOn(s, 2); if(T) cout << "ON\n"; else cout << "OFF\n";
+	int T;
+	cout << "4. Check if the 3-th and then 2-nd item of the set is on?\n";
+	s = 42; printSet(s);
+	T = isOn(s, 3); if(T) cout << "ON\n"; else cout << "OFF\n";
+	T = isOn(s, 2); if(T) cout << "ON\n"; else cout << "OFF\n";
 
-    cout << "5. Clear/turn off the 1-st item of the set\n";
-    s = 42; printSet(s);
-    clearBit(s, 1); printSet(s);
-    cout << endl;
+	cout << "5. Clear/turn off the 1-st item of the set\n";
+	s = 42; printSet(s);
+	clearBit(s, 1); printSet(s);
+	cout << endl;
 
-    cout << "6. Toggle the 2-nd item and then 3-rd item of the set\n";
-    s = 40; printSet(s);
-    toggleBit(s, 2); printSet(s);
-    toggleBit(s, 3); printSet(s);
-    cout << endl;
+	cout << "6. Toggle the 2-nd item and then 3-rd item of the set\n";
+	s = 40; printSet(s);
+	toggleBit(s, 2); printSet(s);
+	toggleBit(s, 3); printSet(s);
+	cout << endl;
 
-    cout << "7. Check the first bit from right that is on\n";
-    s = 40; printSet(s);
-    T = lowBit(s); cout << "T = " << T << " (this is always a power of 2)\n";
-    s = 52; printSet(s);
-    T = lowBit(s); cout << "T = " << T << " (this is always a power of 2)\n";
-    cout << endl;
+	cout << "7. Check the first bit from right that is on\n";
+	s = 40; printSet(s);
+	T = lowBit(s); cout << "T = " << T << " (this is always a power of 2)\n";
+	s = 52; printSet(s);
+	T = lowBit(s); cout << "T = " << T << " (this is always a power of 2)\n";
+	cout << endl;
+	    cout << "8. Turn on all bits in a set of size n = 6" << endl;
+	setAll(s, 6); printSet(s);
+	cout << endl;
+
+	cout << "9. Other tricks (not shown in the book)" << endl;
+	cout << "8 % 4 = " << modulo(8, 4) << endl;
+	cout << "7 % 4 = " << modulo(7, 4) << endl;
+	cout << "6 % 4 = " << modulo(6, 4) << endl;
+	cout << "5 % 4 = " << modulo(5, 4) << endl;
+	cout << "is " << 9 << " power of two? " << isPowerOfTwo(9) << endl;
+	cout << "is " << 8 << " power of two? " << isPowerOfTwo(8) << endl;
+	cout << "is " << 7 << " power of two? " << isPowerOfTwo(7) << endl;
+	for (int i = 0; i <= 16; i++)
+		cout << "Nearest power of two of " << i << " is " << nearestPowerOfTwo(i) << endl;
+	cout << "S = " << 40 << " turn off last bit in S, S = " << turnOffLastBit(40) << endl;
+	cout << "S = " << 41 << " turn on last zero in S, S = " << turnOnLastZero(41) << endl;
+	cout << "S = " << 39 << " turn off last consectuve bits in S, S = " << turnOffLastConsecutiveBits(39) << endl;
+	cout << "S = " << 36 << " turn on last consecutive zeroes in S, S = " << turnOnLastConsecutiveZeroes(36) << endl;
+	return 0;
 }
 
 
