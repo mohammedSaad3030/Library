@@ -455,7 +455,8 @@ int main()
 	s = 52; printSet(s);
 	T = lowBit(s); cout << "T = " << T << " (this is always a power of 2)\n";
 	cout << endl;
-	    cout << "8. Turn on all bits in a set of size n = 6" << endl;
+	   
+	cout << "8. Turn on all bits in a set of size n = 6" << endl;
 	setAll(s, 6); printSet(s);
 	cout << endl;
 
