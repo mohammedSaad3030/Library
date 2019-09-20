@@ -243,7 +243,7 @@ void sieve(ll upperbound)
     _sieve_size = upperbound + 1;                   /// add 1 to include upperbound
     bs.set();                                                 /// set all bits to 1
     bs[0] = bs[1] = 0;                                     /// except index 0 and 1
-    for (ll i = 2; i <= _sieve_size; i++) if (bs[i])
+    for (ll i = 2; i * i <= _sieve_size; i++) if (bs[i])
     {
         /// cross out multiples of i starting from i * i!
         for (ll j = i * i; j <= _sieve_size; j += i) bs[j] = 0;
