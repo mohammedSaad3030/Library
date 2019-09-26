@@ -64,7 +64,18 @@ int summ(int i, int n)
     if(i == 1) return(n* (n+1) / 2);
     return (summ(1, n) - summ(1, i-1));
 }
-
+	  
+///2D arr Prefix sum
+lp(i,n)
+        {
+            lp(j, n)
+            {
+                if(i) arr[i][j] += arr[i-1][j];
+                if(j) arr[i][j] += arr[i][j-1];
+                if(i && j) arr[i][j] -= arr[i-1][j-1];
+            }
+        }
+	
 ///gcd
 int gcd(ll a, ll b) { return b == 0 ? a : gcd(b, a % b ); }
 
