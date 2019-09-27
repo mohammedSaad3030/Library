@@ -90,7 +90,23 @@ for(int i = 1 ; i <= g/i ; i++)
     }
 }///You can sort the dividors vector (if you need the dividors to be sorted) after you finish generating it.
 
+///Power
+ll power(int base, int p)
+{
+    if(p == 0) return 1;
+    long long n = base;
+    lp(i, p-1)
+        n *= base;
+    return n;
+}
 
+/// N choose K
+int calc(int i, int j)
+{
+    if(j <= -1 || j > i) return 0;
+    if(i == 0 && j == 0) return 1;
+    return (calc(i-1, j-1) + calc(i-1, j));
+}
 
 
 *********************** (Strings) ************************************************************************************
