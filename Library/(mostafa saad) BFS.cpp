@@ -3,7 +3,7 @@ vector<int> BFS2(int s, vector<vector<int> > & adjList) {
 	queue<int> q;
 	q.push(s), len[s] = 0;
 
-	int dep = 0;
+	int dep = 0, cur;
 	for (; !q.empty(); ++dep, sz = q.size()) {
 		while (sz--) {
 			cur = q.front(), q.pop();
