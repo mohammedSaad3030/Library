@@ -50,6 +50,14 @@ int comp_double(double a, double b)
 		return 0;
 	return a < b ? -1 : 1;
 }
+	   
+///If I search the set<pii> I will use set.find()
+///But what if I have set<pii, string> and I have the pii and try to 
+///know it's string (to use find you have to have both pii, str) I will use find_if
+///d is pii which I search for
+///problem 571 UVA
+auto it = find_if(parStr.begin(), parStr.end(),
+                       [d](const pair<pii, string> & i ) { return i.first.first == d.first && i.first.second == d.second;} );
 
 ///Ceil division
 ll ceilDiv(ll a, ll b)
