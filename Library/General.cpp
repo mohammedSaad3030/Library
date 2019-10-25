@@ -116,12 +116,22 @@ int calc(int i, int j)
     return (calc(i-1, j-1) + calc(i-1, j));
 }
 
+///sort vector of pairs based on the second element (this is the way of sorting on a certain creteria generally)
+bool sortbysec(const pair<int,int> &a, 
+              const pair<int,int> &b) 
+{ 
+    return (a.second < b.second); 
+} 
+sort(vect.begin(), vect.end(), sortbysec); 	   
+	  
+	  
 ///long long with printf; source : https://cboard.cprogramming.com/c-programming/60111-displaying-long-long-printf.html
   uint64_t num = UINT64_MAX;
   int64_t num2 = 317584931803ll;
  
   printf("%llu\n", num);
   printf("%lld\n", num2);
+	   
 
 
 *********************** (Strings) ************************************************************************************
