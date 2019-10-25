@@ -116,6 +116,13 @@ int calc(int i, int j)
     return (calc(i-1, j-1) + calc(i-1, j));
 }
 
+///long long with printf; source : https://cboard.cprogramming.com/c-programming/60111-displaying-long-long-printf.html
+  uint64_t num = UINT64_MAX;
+  int64_t num2 = 317584931803ll;
+ 
+  printf("%llu\n", num);
+  printf("%lld\n", num2);
+
 
 *********************** (Strings) ************************************************************************************
 
