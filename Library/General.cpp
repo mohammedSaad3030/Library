@@ -213,7 +213,24 @@ void permute(string a, int l, int r)
     }
 }
 
-
+bool permute(ll arr[], int x)
+{
+    for(int i = 0 ; i <= n-x ; i++)
+    {
+        for(int j = i+1 ; j <= n-x+1 ; j++)
+        {
+            for(int z = j + 1; z < n; z++)
+            {
+                ll per[5] = {arr[i], arr[j], arr[z]};
+                if(check(per))
+                {
+                    return 1;
+                }
+            }
+        }
+    }
+    return 0;
+}
 
 
 ********************* (Fibonacci) **************************************************************************************
@@ -552,3 +569,10 @@ vector <std::string>  vec(6);
 vec[0][0] = 'h';
 instead do this :
 vec[0] += 'h';
+	
+non-degenerate triangle: CF-766B
+a+b>c
+
+a+c>b
+
+b+c>a
