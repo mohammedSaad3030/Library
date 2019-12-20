@@ -26,7 +26,33 @@ const ll INF = 1e15;
 const int MOD = 1e9 + 7;
 
 
-
+vi primeFactors(ll N) {
+// remember: vi is vector<int>, ll is long long
+vi factors;
+ll PF_idx = 0, PF = primes[PF_idx]; // primes has been populated by sieve
+while (PF * PF <= N) {
+// stop at sqrt(N); N can get smaller
+while (N % PF == 0) { N /= PF; factors.push_back(PF); }
+// remove PF
+PF = primes[++PF_idx];
+// only consider primes!
+}
+if (N != 1) factors.push_back(N);
+// special case if N is a prime
+return factors;
+// if N does not fit in 32-bit integer and is a prime
+}
+// then ‘factors’ will have to be changed to vector<ll>
+// inside int main(), assuming sieve(1000000) has been called before
+vi r = primeFactors(2147483647);
+// slowest, 2147483647 is a prime
+for (vi::iterator i = r.begin(); i != r.end(); i++) printf("> %d\n", *i);
+r = primeFactors(136117223861LL);
+// slow, 104729*1299709
+for (vi::iterator i = r.begin(); i != r.end(); i++) printf("# %d\n", *i);
+r = primeFactors(142391208960LL);
+// faster, 2^10*3^4*5*7^4*11*13
+for (vi::iterator i = r.begin(); i != r.end(); i++) printf("! %d\n", *i);
 
 ************************ (General tools) ***********************************************************************************
 
